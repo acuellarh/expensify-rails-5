@@ -1,0 +1,36 @@
+
+<div class="container">
+    <div class="row">  
+      <div class="col-md-6">  
+        <h3>Categorias</h3>
+        <div>
+            <%= link_to  "New Category", new_category_path, remote: true, class:"btn btn-success pull-left glyphicon glyphicon-plus" %>
+        </div>  
+        <table id="expenses-table" class="table table-hover" style="margin-top: 20px;">  
+          <thead>  
+            <tr>  
+              <th>Nombre</th>  
+              <th class="text-right">Acciones</th>  
+            </tr>  
+          </thead>  
+          <tbody>  
+            <% @categories.each do |category| %>  
+            <tr>  
+              <td><%= category.name %></td>  
+              <td class="text-right" style="width: 170px;">  
+                <div class="actions">                    
+                  <%= link_to  "Edit", edit_category_path(category), remote:true, class: "glyphicon glyphicon-edit" %>
+                  <%= link_to  "Delete", category, method: :delete, data: {confirm: "Seguro de borrar?"}, class: "glyphicon glyphicon-trash" %>
+                  
+                  <!-- <a href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a>   -->
+                  <!-- <a href="#"><span class="glyphicon glyphicon-trash"></span> Delete</a>   -->
+              </td>  
+            </tr>  
+            <% end %>  
+          </tbody>  
+        </table>  
+      </div>  
+    </div>  
+  </div>
+  
+  
