@@ -28,10 +28,48 @@
             <li class="<%= 'active' if @tab == :dashboard %>"><%= link_to "Dashboard", root_path %></li>
             <li class="<%= 'active' if @tab == :expenses %>"><%= link_to "Expenses", expenses_path %></li>
           </ul>
+           <!-- ul menu to the right -->
+          <ul class="nav navbar-nav navbar-right">
+            <!-- links for devise use -->
+            <li class="active">
+              <%= link_to  "Registrarse", new_user_registration_path %>
+            </li>
+            <li>
+              <% if user_signed_in? %>
+              <%= link_to  "Salir",  destroy_user_session_path, method: :delete %>            
+                <% else %>
+                 <%= link_to  "Ingresar", new_user_session_path %>          
+              <% end %>
+            </li>
+            <!-- /. links for devise use -->
+          </ul>
+           <!-- ul to the right -->
         </div>
       </div>
     </nav>
 
+    <% if user_signed_in? %>
+    <div>
+      <p>Hola <%=  current_user.email %></p>
+    </div>
+    <% end %>
+
+    <!-- Flash error messages for devise -->
+    <% flash.each do |key, value| %>
+     <div class="alerta">
+       <div class="<%= flash_class(key) %>">
+         <%= value %>
+       </div>
+      <% end %>
+     </div>
+     <!-- / Flash error messages for devise -->
+     
     <%= yield %>
+
+    <script>
+     $(".alert").fadeIn(200).css("opacity", "0.85").delay(2000).slideUp(1000);
+     $(".alerta").on('click', '.alert', function () { $(this).remove() })
+    </script> 
+
   </body>
 </html>
