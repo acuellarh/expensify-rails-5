@@ -1,7 +1,7 @@
 class ExpensesController < ApplicationController
   def index
     @tab = :expenses
-    @expense = Expense.all
+    @expenses = Expense.all
     @categories = Category.all
   end
 
@@ -10,7 +10,19 @@ class ExpensesController < ApplicationController
   end
 
   def create
-    
+    @expense = Expense.new(params_expenses)
+
+    if @expense.save
+      redirect_to expenses_path
+    else
+      render :new
+    end      
+  end
+
+  private
+
+  def params_expenses
+    params.require(:expense).permit(:id, :type_id, :date, :concept, :category_id, :amount).merge(user: current_user)
   end
 
 
