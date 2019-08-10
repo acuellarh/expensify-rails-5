@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root "dashboard#index"
 
   resources :categories
-  resources :expenses, only: [:index]
+  resources :expenses
   
 
   # root to:"home#index"

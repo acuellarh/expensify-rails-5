@@ -1,0 +1,62 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="expense-modal-form">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <%= form_for @expense, remote: true do |f| %>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title"><%= title_expense %></h4>
+          <!-- <h4 class="modal-title">Crear Gasto</h4> -->
+        </div>
+        <div class="modal-body">
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <%= f.label :Type %>              
+                 <%= f.collection_select(:type_id, Type.order(:name), :id, :name, {prompt: 'Select expense type'}, {class:"form-control"}) %>                         
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <%= f.label :Date %>
+                <%= f.date_field :date,  class: "form-control" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <%= f.label :concept %>
+                <%= f.text_field :concept,  class: "form-control", placeholder: "Ingrese nuevo expense" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <%= f.label :Category %>
+                  <%= f.collection_select(:category_id, Category.order(:name), :id, :name, {prompt: 'Select category type'}, {class:"form-control"}) %>                         
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <%= f.label :Amount %>
+                  <%= f.text_field :amount,  class: "form-control", placeholder: "Set Amount" %>
+                </div>
+              </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <%= f.submit title_expense, class: "btn btn-default" %>         
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>          
+        </div>
+        <% end %>
+      </div><!-- /.modal-content -->
+  
+    </div><!-- /.modal-dialog -->
+  
+  </div><!-- /.modal -->
