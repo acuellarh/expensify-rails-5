@@ -31,14 +31,23 @@
            <!-- ul menu to the right -->
           <ul class="nav navbar-nav navbar-right">
             <!-- links for devise use -->
-            <li class="active">
-              <%= link_to  "Registrarse", new_user_registration_path %>
-            </li>
             <li>
-              <% if user_signed_in? %>
-              <%= link_to  "Salir",  destroy_user_session_path, method: :delete %>            
+              <% if !(user_signed_in?) %>
+                <li class="active">
+                  <%= link_to  "Registrarse", new_user_registration_path %>              
+                </li>
+                <li>
+                  <%= link_to  "Ingresar", new_user_session_path %>              
+                </li>
                 <% else %>
-                 <%= link_to  "Ingresar", new_user_session_path %>          
+                <li>
+                  <%= link_to  "Salir",  destroy_user_session_path, method: :delete %> 
+                </li>
+                <li > 
+                  <a href="">
+                    <img src="<%= @avatar %>"  class="img-circle">                              
+                  </a>             
+                </li>                                  
               <% end %>
             </li>
             <!-- /. links for devise use -->
