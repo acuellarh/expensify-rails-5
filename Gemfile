@@ -20,6 +20,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'devise'
 # Gravatar
 gem 'gravatar-ultimate'
+# Gem Annotate it is used to anootate in to the models the fiels of the schema
+gem 'annotate'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
