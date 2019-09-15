@@ -18,5 +18,10 @@ class Expense < ApplicationRecord
   belongs_to :category
   belongs_to :user
 
+  validates :date, presence: true
+  validates :amount, presence: true
+  validates :concept, presence: true
+
+
   
 end

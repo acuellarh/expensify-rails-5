@@ -14,11 +14,15 @@ class ExpensesController < ApplicationController
   def create
     @expense = Expense.new(params_expenses)
 
-    if @expense.save
-      redirect_to expenses_path
-    else
-      render :new
-    end      
+    respond_to do |format|
+      if @expense.save
+        format.json { head :no_content }
+        format.js
+      else
+        format.json {render json: @expense.errors.full_messages,
+                            status: :unprocessable_entity}
+      end      
+    end  
   end
 
   def edit    
