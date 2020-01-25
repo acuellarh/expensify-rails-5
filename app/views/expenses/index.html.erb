@@ -25,7 +25,19 @@
       <%= form_tag expenses_path, method: 'get', id: "expenses_search" do %>
       <% @types = Type.all%>
       <% @types.each do |type| %>
-        <%= check_box_tag "type[]", type.name %><%= type.name%><br>
+        <%= check_box_tag "type_id[]", type.id %><%= type.name%><br>
+      <% end %>
+      <%= submit_tag "submit", :name => nil %>
+      <% end %>     
+      </div>
+      <!-- end for_tag to filter expenses by type  --> 
+
+      <!-- for_tag to filter expenses by category -->
+      <div class="list-group filter-type">      
+      <%= form_tag expenses_path, method: 'get', id: "expenses_search" do %>
+      <% @categories = Category.all %>
+      <% @categories.each do |category| %>
+        <%= check_box_tag "category_id[]", category.id %><%= category.name%><br>
       <% end %>
       <%= submit_tag "submit", :name => nil %>
       <% end %>     

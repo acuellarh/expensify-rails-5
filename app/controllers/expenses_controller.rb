@@ -1,15 +1,20 @@
 class ExpensesController < ApplicationController
   before_action :current_expense, only: [:show, :edit, :update, :destroy]
-  has_scope :by_type, type: :array
+ 
+  has_scope :expense_type_id, type: :array
+  has_scope :expense_category_id, type: :array
   
 
   def index
     @tab = :expenses
-    @expenses = Expense.all.purchase_id
+    #@type_id = params[:type]
+    #@type_id =  [1,2,3,4]
+    @type_id =  params[:type_id].present? ? params[:type_id] : [1,2,3,4]
+    @category_id =  params[:category_id].present? ? params[:category_id] : [1,2,3,4]
+    @expenses = Expense.expense_type_id(@type_id).expense_category_id(@category_id)
+    #@expenses = Expense.all.purchase_id
     #@expenses = Expense.all
-    #@expenses = apply_scopes(Expense).all
-    #@name = params[:name]
-    #@expenses = Expense.by_type(@name)
+    #@expenses = apply_scopes(Expense).all 
     @categories = Category.all
   end
 

@@ -24,25 +24,15 @@ class Expense < ApplicationRecord
   
   #scope :purchase_id  , -> {where(:type_id => 2 )}
 
-  
-  scope :purchase_id  , -> (type_id) {where("type_id LIKE ?", type_id )}
-  scope :purchase_id  , -> (type_id) {where("type_id LIKE ?", type_id )}
+  #scope :purchase_id, -> (type_id) {where(:type_id => 2 )}
 
 
-  #scope :colored, -> (color) {where("color LIKE ?", color)
+  scope :expense_type_id, -> (type_id) {where(type_id: type_id)}
+  scope :expense_category_id, -> (category_id) {where(category_id: category_id)}
 
-  #scope :purchase_id  , -> {where(:concept => "prueba" )}
 
-  #scope :by_type, -> name {where(:name => name)}X|
+  #scope :category_id  , -> {where(:category_id => 1 )}
 
-  #scope :by_type, ->  {where(:name => name)}
-
-  #scope :by_type  , -> name
-  #{where(:name => name )}
-
- 
- # scope :by_type, -> (name)
- # {where("name LIKE ?", name )}
   
 
   
