@@ -6,22 +6,7 @@
         <a href="#" class="list-group-item">Purchase</a>
         <a href="#" class="list-group-item">Withdrawal</a>
         <!-- more transaction types -->
-      </div>
-
-
-      <!-- more transaction types -->
-      <%= form_tag expenses_path, method: 'get', id: "expenses_search" do %>
-      <% @types = Type.all%>
-      <% @types.each do |type| %>
-        <%= check_box_tag "type[]", type.name %><%= type.name%><br>
-      <% end %>
-     <%= submit_tag "submit", :name => nil %>
-      <% end %>
-      <!-- more transaction types -->
-
-
-
-
+      </div>      
 
       <h4 class="filter-header">Categoría <span>Selecciona para filtrar</span></h4>
       <div class="list-group filter-type">       
@@ -31,73 +16,36 @@
       </div>
 
       <%= link_to  "Crear Categorias", categories_path, class: "btn btn-success pull-left"%>
+      
+      <br>
+      <br>
+      <br>
+      <!-- for_tag to filter expenses by type -->
+      <div class="list-group filter-type">      
+      <%= form_tag expenses_path, method: 'get', id: "expenses_search" do %>
+      <% @types = Type.all%>
+      <% @types.each do |type| %>
+        <%= check_box_tag "type[]", type.name %><%= type.name%><br>
+      <% end %>
+      <%= submit_tag "submit", :name => nil %>
+      <% end %>     
+      </div>
+      <!-- end for_tag to filter expenses by type  -->   
 
     </div>
-    <div class="col-md-9 index-data">
-      <div class="row" style="margin-top: 10px;">
-        <div class="summary-box col-md-4 text-center">
-          <div class="summary-value">$2,500,000</div>
-          <div class="summary-label">Total</div>
-        </diV>
-        <div class="summary-box col-md-4 text-center">
-          <div class="summary-value">2</div>
-          <div class="summary-label">Transactions</div>
-        </div>
-        <div class="summary-box col-md-4 text-center">
-          <div class="summary-value">$1,000,000</div>
-          <div class="summary-label">Average</div>
-        </div>
-      </div>
 
-      <div class="row" style="margin-top: 20px;">
-        <div class="col-md-12">
-          <%= link_to  "New Expense", new_expense_path, remote: true, class: "btn btn-success pull-left glyphicon glyphicon-plus" %>
-          <h4 class="dropdown pull-right">
-            <button type="button" class="dropdown-toggle btn btn-link" data-toggle="dropdown">April 2016 <span class="caret"></span></button>
-            <ul class="dropdown-menu" role="menu">
-              <li role="presentation"><a href="#">April 2016</a></li>
-              <li role="presentation"><a href="#">March 2016</a></li>
-              <!-- more months -->
-            </ul>
-          </h4>
-        </div>
-      </div>
+    <div id="expenses_reload" >  <%= render 'expenses' %>   </div>
 
-      <table id="expenses-table" class="table table-hover" style="margin-top: 20px;">
-        <thead>
-          <tr>
-            <th class="text-center">Día</th>
-            <th>Concepto</th>
-            <th class="text-right">Categoría</th>
-            <th class="text-right">Valor</th>
-          </tr>
-        </thead>
-        <tbody>
-          <%@expenses.each do |expense|%>
-            <tr>
-              <td class="date">
-                <div class="day"><%= expense.date.strftime(" %d ")%></div>
-                <div class="month"><%= expense.date.strftime(" %B ")%></div>               
-              </td>
-              <td>
-                <div>                 
-                  <span class="type"><%= expense.type.name%></span>                  
-                </div>
-                <div>                 
-                  <span class="concept"><%= expense.concept%></span>
-                </div>
-              </td>           
-              <td class="category text-right"><%= expense.category.name%></td>
-              <td class="text-right" style="width: 170px;">              
-                <div class="amount"><%= expense.amount%></div>
-                <div class="actions">
-                  <%= link_to  "Edit", edit_expense_path(expense),remote:true, class: "glyphicon glyphicon-edit" %>
-                  <%= link_to  "Delete", expense_path(expense),data: {confirm: "Esta seguro de eliminar el Gasto?"}, method: :delete , class: "glyphicon glyphicon-edit" %>
-              </td>
-            </tr>
-           <%end%>  
-        </tbody>
-      </table>
-    </div>
+
   </div>
 </div>
+
+<script type=text/javascript>
+$(function(){
+  //search for submit
+  $('expenses_search').submit(function(){
+    $.get(this.action, $(this).serialize(), null, 'script');
+    return false
+  });
+});
+</script>

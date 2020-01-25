@@ -5,8 +5,11 @@ class ExpensesController < ApplicationController
 
   def index
     @tab = :expenses
+    @expenses = Expense.all.purchase_id
     #@expenses = Expense.all
-    @expenses = apply_scopes(Expense).all
+    #@expenses = apply_scopes(Expense).all
+    #@name = params[:name]
+    #@expenses = Expense.by_type(@name)
     @categories = Category.all
   end
 

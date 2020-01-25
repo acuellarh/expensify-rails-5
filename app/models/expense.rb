@@ -21,8 +21,28 @@ class Expense < ApplicationRecord
   validates :date, presence: true
   validates :amount, presence: true
   validates :concept, presence: true
+  
+  #scope :purchase_id  , -> {where(:type_id => 2 )}
 
-  scope :by_type  , -> name {where(:name => name ) }
+  
+  scope :purchase_id  , -> (type_id) {where("type_id LIKE ?", type_id )}
+  scope :purchase_id  , -> (type_id) {where("type_id LIKE ?", type_id )}
+
+
+  #scope :colored, -> (color) {where("color LIKE ?", color)
+
+  #scope :purchase_id  , -> {where(:concept => "prueba" )}
+
+  #scope :by_type, -> name {where(:name => name)}X|
+
+  #scope :by_type, ->  {where(:name => name)}
+
+  #scope :by_type  , -> name
+  #{where(:name => name )}
+
+ 
+ # scope :by_type, -> (name)
+ # {where("name LIKE ?", name )}
   
 
   
