@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :expenses
   
+  
 
   # root to:"home#index"
 

@@ -1,9 +1,12 @@
 class ExpensesController < ApplicationController
   before_action :current_expense, only: [:show, :edit, :update, :destroy]
+  has_scope :by_type, type: :array
+  
 
   def index
     @tab = :expenses
-    @expenses = Expense.all
+    #@expenses = Expense.all
+    @expenses = apply_scopes(Expense).all
     @categories = Category.all
   end
 

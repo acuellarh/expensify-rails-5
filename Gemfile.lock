@@ -76,6 +76,9 @@ GEM
     gravatar-ultimate (2.0.0)
       activesupport (>= 2.3.14)
       rack
+    has_scope (0.7.2)
+      actionpack (>= 4.1)
+      activesupport (>= 4.1)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     jbuilder (2.7.0)
@@ -193,6 +196,7 @@ DEPENDENCIES
   devise
   faker
   gravatar-ultimate
+  has_scope
   jbuilder (~> 2.0)
   jquery-rails
   listen (~> 3.0.5)

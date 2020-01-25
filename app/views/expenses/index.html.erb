@@ -8,6 +8,21 @@
         <!-- more transaction types -->
       </div>
 
+
+      <!-- more transaction types -->
+      <%= form_tag expenses_path, method: 'get', id: "expenses_search" do %>
+      <% @types = Type.all%>
+      <% @types.each do |type| %>
+        <%= check_box_tag "type[]", type.name %><%= type.name%><br>
+      <% end %>
+     <%= submit_tag "submit", :name => nil %>
+      <% end %>
+      <!-- more transaction types -->
+
+
+
+
+
       <h4 class="filter-header">Categoría <span>Selecciona para filtrar</span></h4>
       <div class="list-group filter-type">       
         <% @categories.each do |category| %> 

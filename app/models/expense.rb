@@ -22,5 +22,8 @@ class Expense < ApplicationRecord
   validates :amount, presence: true
   validates :concept, presence: true
 
+  scope :by_type  , -> name {where(:name => name ) }
+  
+
   
 end
