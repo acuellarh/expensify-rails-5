@@ -1,23 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
-      <h4 class="filter-header">Transaction Type <span>Choose to filter</span></h4>
-      <div class="list-group filter-type">
-        <a href="#" class="list-group-item">Purchase</a>
-        <a href="#" class="list-group-item">Withdrawal</a>       
-      </div>      
-
-      <h4 class="filter-header">Categoría <span>Selecciona para filtrar</span></h4>
-      <div class="list-group filter-type">       
-        <% @categories.each do |category| %> 
-        <a href="#" class="list-group-item"><%= category.name %></a>
-        <% end%>
-      </div>
-
-      <%= link_to  "Crear Categorias", categories_path, class: "btn btn-success pull-left"%>
-      
-      <br>
-      <br>
+    <div class="col-md-3">      
       <br>
       <!-- for_tag to filter expenses by type -->
       <div class="list-group filter-type"> 
@@ -52,12 +35,4 @@
   </div>
 </div>
 
-<script type=text/javascript>
-$(function(){
-  //search for submit
-  $('expenses_search').submit(function(){
-    $.get(this.action, $(this).serialize(), null, 'script');
-    return false
-  });
-});
-</script>
+
