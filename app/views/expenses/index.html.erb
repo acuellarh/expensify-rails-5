@@ -4,8 +4,7 @@
       <h4 class="filter-header">Transaction Type <span>Choose to filter</span></h4>
       <div class="list-group filter-type">
         <a href="#" class="list-group-item">Purchase</a>
-        <a href="#" class="list-group-item">Withdrawal</a>
-        <!-- more transaction types -->
+        <a href="#" class="list-group-item">Withdrawal</a>       
       </div>      
 
       <h4 class="filter-header">Categoría <span>Selecciona para filtrar</span></h4>
@@ -21,20 +20,26 @@
       <br>
       <br>
       <!-- for_tag to filter expenses by type -->
-      <div class="list-group filter-type">      
+      <div class="list-group filter-type"> 
+      <h4 class="filter-header">Transaction Type <span>Choose to filter</span></h4>    
       <%= form_tag expenses_path, method: 'get', id: "expenses_search" do %>
 
         <% @types = Type.all%>
         <% @types.each do |type| %>
-          <%= check_box_tag "type_id[]", type.id %><%= type.name%><br>
-        <% end %>             
-    
+          <span class="list-group-item">
+            <%= check_box_tag "type_id[]", type.id %><%= type.name%><br>
+          </span>  
+        <% end %>  
+
+        <h4 class="filter-header">Category Type  <span>Choose to filter</span></h4>
         <% @categories = Category.all %>
         <% @categories.each do |category| %>
-          <%= check_box_tag "category_id[]", category.id %><%= category.name%><br>
-        <% end %>
-        
-        <%= submit_tag "submit", :name => nil %>
+          <span class="list-group-item">
+            <%= check_box_tag "category_id[]", category.id %><%= category.name%><br>
+           </span>  
+        <% end %>    
+      <br>        
+        <%= submit_tag "submit", :name => nil, class: "btn btn-success pull-left"  %>
       <% end %>     
       </div>
       <!-- end for_tag to filter expenses by type  -->   
