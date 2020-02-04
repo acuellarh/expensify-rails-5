@@ -7,15 +7,15 @@ class ExpensesController < ApplicationController
 
   def index
     @tab = :expenses
-    #@type_id = params[:type]
-    #@type_id =  [1,2,3,4]
     @type_id =  params[:type_id].present? ? params[:type_id] : [1,2,3,4]
     @category_id =  params[:category_id].present? ? params[:category_id] : [1,2,3,4]
     @expenses = Expense.expense_type_id(@type_id).expense_category_id(@category_id)
-    #@expenses = Expense.all.purchase_id
-    #@expenses = Expense.all
-    #@expenses = apply_scopes(Expense).all 
-    @categories = Category.all
+ 
+    @total = Expense.total(@expenses)
+
+
+
+
   end
 
   def new

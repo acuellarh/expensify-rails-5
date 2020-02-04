@@ -51,6 +51,7 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.3)
     byebug (10.0.1)
+    chartkick (3.3.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -76,6 +77,8 @@ GEM
     gravatar-ultimate (2.0.0)
       activesupport (>= 2.3.14)
       rack
+    groupdate (4.3.0)
+      activesupport (>= 5)
     has_scope (0.7.2)
       actionpack (>= 4.1)
       activesupport (>= 4.1)
@@ -192,10 +195,12 @@ DEPENDENCIES
   annotate
   bootstrap-sass (~> 3.3.6)
   byebug
+  chartkick (~> 3.3, >= 3.3.1)
   coffee-rails (~> 4.1.0)
   devise
   faker
   gravatar-ultimate
+  groupdate (~> 4.3)
   has_scope
   jbuilder (~> 2.0)
   jquery-rails

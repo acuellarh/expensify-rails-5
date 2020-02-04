@@ -42,7 +42,9 @@
       <div class="panel panel-default">
         <div class="panel-heading">Por Categoría</div>
         <div class="panel-body">
-          <div id="category-chart" style="height: 250px;"></div>
+          <div id="category-chart" style="height: 250px;">            
+            <%= pie_chart @category_full_data, prefix: "$", thousands: ","%>            
+          </div>
         </div>
       </div>
     </div>
@@ -50,7 +52,9 @@
       <div class="panel panel-default">
         <div class="panel-heading">Acumulado</div>
         <div class="panel-body">
-          <div id="month-acc" style="height: 250px;"></div>
+          <div id="month-acc" style="height: 250px;">
+            <%= column_chart @column_data, stacked: true, prefix: "$", thousands: "," %>
+          </div>          
         </div>
       </div>
     </div>

@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require turbolinks
+//= require chartkick
+//= require Chart.bundle
 //= require_tree .
 
 	
@@ -29,3 +31,4 @@ $(document).ajaxError(function(event,xhr,options,exc) {
     $("#error_explanation").html(kk);
        
 });
+

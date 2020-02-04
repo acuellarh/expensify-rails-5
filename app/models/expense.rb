@@ -22,16 +22,16 @@ class Expense < ApplicationRecord
   validates :amount, presence: true
   validates :concept, presence: true
   
-  #scope :purchase_id  , -> {where(:type_id => 2 )}
-
-  #scope :purchase_id, -> (type_id) {where(:type_id => 2 )}
-
-
   scope :expense_type_id, -> (type_id) {where(type_id: type_id)}
   scope :expense_category_id, -> (category_id) {where(category_id: category_id)}
 
 
-  #scope :category_id  , -> {where(:category_id => 1 )}
+  def self.total(expenses)
+    expenses.empty? ? 0 : expenses.map { |expense| expense[:amount].to_f }.reduce(:+)
+  end
+
+
+
 
   
 
