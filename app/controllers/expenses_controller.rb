@@ -11,8 +11,11 @@ class ExpensesController < ApplicationController
     @category_id =  params[:category_id].present? ? params[:category_id] : [1,2,3,4]
     @expenses = Expense.expense_type_id(@type_id).expense_category_id(@category_id)
  
-    @total = Expense.total(@expenses)
-
+    # @total = Expense.total(@expenses)
+    @total = Expense.expense_type_id(@type_id).expense_category_id(@category_id).total(@expenses)
+    @num_transactions = @expenses.count 
+    @average = @total / @num_transactions
+    
 
 
 
