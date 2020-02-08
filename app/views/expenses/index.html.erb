@@ -22,19 +22,30 @@
            </span>  
         <% end %>    
       <br>        
-        <%= submit_tag "submit", :name => nil, class: "btn btn-success pull-left"  %>
+        <%#= submit_tag "submit", :name => nil, class: "btn btn-success pull-left"  %>
       <% end %>     
       </div>
       <!-- end for_tag to filter expenses by type  -->   
 
     </div>
 
-    <div id="expenses_reload" >  <%= render 'expenses' %>   </div>
+    <div id="expenses" >  <%= render 'expenses' %>   </div>
 
  
 
 
   </div>
 </div>
+
+<script>
+$(function () {
+  // filtration by checkbox
+    $('input[type=checkbox]').change(function(){
+      $.get($('#expenses_search').attr('action'),
+      $('#expenses_search').serialize(), null, 'script');
+      return false;    
+    });
+});
+</script>
 
 

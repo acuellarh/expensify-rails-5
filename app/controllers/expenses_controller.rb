@@ -32,6 +32,7 @@ class ExpensesController < ApplicationController
     respond_to do |format|
       if @expense.save
         format.json { head :no_content }
+        format.json {render json: @expense }
         format.js
       else
         format.json {render json: @expense.errors.full_messages,
