@@ -41,8 +41,8 @@
 $(function () {
   // filtration by checkbox
     $('input[type=checkbox]').change(function(){
-      $.get($('#expenses_search').attr('action'),
-      $('#expenses_search').serialize(), null, 'script');
+      $.get($('#expenses_search').attr('action'),        
+      $('#expenses_search').serialize(), null, 'script');      
       return false;    
     });
 });
