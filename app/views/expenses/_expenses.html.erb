@@ -20,12 +20,20 @@
         <div class="col-md-12">
           <%= link_to  "New Expense", new_expense_path, remote: true, class: "btn btn-success pull-left glyphicon glyphicon-plus" %>
           <h4 class="dropdown pull-right">
-            <button type="button" class="dropdown-toggle btn btn-link" data-toggle="dropdown">April 2016 <span class="caret"></span></button>
+            <%# <button type="button" class="dropdown-toggle btn btn-link" data-toggle="dropdown">April 2016 <span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
               <li role="presentation"><a href="#">April 2016</a></li>
               <li role="presentation"><a href="#">March 2016</a></li>
               <!-- more months -->
-            </ul>
+            </ul> %>
+            <%= select "", "date", @month_list, { selected: @month_list.first }, class: "btn btn-success" %>
+           
+            <select name="filter_option" onchange="this.form.submit()">
+              <% @month_list.each do |month| %>
+                <option value="<%= month%>"><%= month%></option>
+              <%end%>
+            </select>
+
           </h4>
         </div>
       </div>

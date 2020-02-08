@@ -7,15 +7,16 @@ class ExpensesController < ApplicationController
 
   def index
     @tab = :expenses
+
     @type_id =  params[:type_id].present? ? params[:type_id] : [1,2,3,4]
     @category_id =  params[:category_id].present? ? params[:category_id] : [1,2,3,4]
     @expenses = Expense.expense_type_id(@type_id).expense_category_id(@category_id)
  
-    # @total = Expense.total(@expenses)
     @total = Expense.expense_type_id(@type_id).expense_category_id(@category_id).total(@expenses)
     @num_transactions = @expenses.count 
     @average = @total / @num_transactions
-    
+
+    @month_list = Expense.extract_month_list.reverse!
 
 
 
