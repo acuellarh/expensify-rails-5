@@ -26,11 +26,17 @@
               <li role="presentation"><a href="#">March 2016</a></li>
               <!-- more months -->
             </ul> %>
-            <%= select "", "date", @month_list, { selected: @month_list.first }, class: "btn btn-success" %>
+
+            <%#= select "", "date", @month_list, { selected: @month_list.first }, class: "btn btn-success" %>
            
-            <select name="filter_option" onchange="this.form.submit()">
+        <%# select_tag "city", options_for_select(@cities.collect{|p| [p.name, p.id]}, selected: params[:city]),
+        prompt: "Select city", class: "form-control"
+
+        select_tag "people", options_from_collection_for_select(@people, 'id', 'name', '1') %>
+
+            <select>
               <% @month_list.each do |month| %>
-                <option value="<%= month%>"><%= month%></option>
+                <option value="<%= month%>"><%= month%></option>                          
               <%end%>
             </select>
 
@@ -76,6 +82,29 @@
       </table>
     </div>
 
+
+<script>
+$(function () {
+  // filtration by date
+  $('select').on('change', function() {
+    console.log(this.value);
+    var month = $(this).val();
+ 
+    $.ajax({
+        type: "GET",
+        url: "/expenses",
+        data: {month: month},,
+        dataType: "json",
+          success: function(response) {
+          console.log(response)
+          }       
+
+    });
+
+  });
+
+});
+</script>
 
 
 

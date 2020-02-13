@@ -29,6 +29,14 @@
 
     </div>
 
+   <%# calculos y enlaces %>
+
+
+
+
+   <%# end calculos y enlaces  %>
+    
+
     <div id="expenses" >  <%= render 'expenses' %>   </div>
 
  
@@ -40,7 +48,7 @@
 <script>
 $(function () {
   // filtration by checkbox
-    $('input[type=checkbox]').change(function(){
+    $('input[type=checkbox]').change(function(){      
       $.get($('#expenses_search').attr('action'),        
       $('#expenses_search').serialize(), null, 'script');      
       return false;    

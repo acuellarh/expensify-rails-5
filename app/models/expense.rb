@@ -34,9 +34,12 @@ class Expense < ApplicationRecord
     expenses.group_by_month(:date, format: "%b %Y").count.keys
   end 
 
-  scope :current_month, -> {
-    start = Time.zone.now
-    where(date: start.beginning_of_month..start.end_of_month )  
+  # scope :filter_month, -> (start = "Mon, 10 Feb 2020 11:09:20 UTC +00:00") {
+  # start = Time.zone.now
+
+  scope :filter_month, -> (month = "Feb 2020") {
+    month = ActiveSupport::TimeZone['UTC'].parse(month)
+    where(date: month.beginning_of_month..month.end_of_month )  
   }
 
 
