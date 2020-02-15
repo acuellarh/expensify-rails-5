@@ -88,15 +88,40 @@ $(function () {
   // filtration by date
   $('select').on('change', function() {
     console.log(this.value);
+    // var month = $(this).val();
     var month = $(this).val();
+    //var month = JSON.stringify({ month: month })
+
+
+    //console.log(JSON.stringify({ x: 5, y: 6 }));
+    // expected output: "{"x":5,"y":6}"
+
+    //console.log(JSON.stringify({ month: month}));
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+    //var month_json = JSON.stringify({ month: month})
+
+     //console.log(month_json);
+        
+
+    //var month_value = $(this).val();
+
+    //var month  = { };
+    //month['month'] = month_value;
  
     $.ajax({
         type: "GET",
         url: "/expenses",
-        data: {month: month},,
-        dataType: "json",
+        //data: month,
+        // dataType: "json",
+        dataType: 'script',
+        // headers: {
+        //   'Content-Type': "application/json"
+        // },        
+         data: {month: month},  
           success: function(response) {
-          console.log(response)
+          //console.log(response)
+          console.log(month)
+          //return false;    
           }       
 
     });

@@ -1,26 +1,35 @@
 class ExpensesController < ApplicationController
   before_action :current_expense, only: [:show, :edit, :update, :destroy]
+
  
   has_scope :expense_type_id, type: :array
-  has_scope :expense_category_id, type: :array
-  
+  has_scope :expense_category_id, type: :array  
 
   def index
     @tab = :expenses
+
+    @month_value =  params[:month].present? ? params[:month] : "Feb 2020"
+    #@expenses = Expense.filter_month(@month_value)
+
     
     @type_id =  params[:type_id].present? ? params[:type_id] : [1,2,3,4]
     @category_id =  params[:category_id].present? ? params[:category_id] : [1,2,3,4]
-    @expenses = Expense.expense_type_id(@type_id).expense_category_id(@category_id).filter_month
+    @expenses = Expense.expense_type_id(@type_id).expense_category_id(@category_id).filter_month(@month_value)
+
  
     @total = Expense.expense_type_id(@type_id).expense_category_id(@category_id).total(@expenses)
     @num_transactions = @expenses.count 
     @average = @total / @num_transactions
-
     @month_list = Expense.extract_month_list.reverse!
 
-    if params[:month].present?
-     console.log("Hola aca estoy")
-    end
+
+  # @post = Post.find(params[:post_id])
+  # @post.views.create(user_id: current_user.id)
+
+  # respond_to do |format|
+  #   format.html { redirect_to posts_path }
+  #   format.js {render json: @post }
+  # end
 
   end
 
