@@ -37,14 +37,15 @@ class Expense < ApplicationRecord
     expenses = expenses.keys
   end 
 
-  # scope :filter_month, -> (start = "Mon, 10 Feb 2020 11:09:20 UTC +00:00") {
-  # start = Time.zone.now
-
-  # scope :filter_month, -> (month = "Feb 2020") {
   scope :filter_month, -> (month) {
     month = ActiveSupport::TimeZone['UTC'].parse(month)
     where(date: month.beginning_of_month..month.end_of_month )  
   } 
+
+  scope :today,      -> { where(date: Date.current) }
+  scope :yesterday,  -> { where(date: Date.current - 1.day) }
+  scope :month,      -> (month) { where(date: month.beginning_of_month..month.end_of_month) }
+  scope :last_month, -> { where(date: (Date.current - 1.month).beginning_of_month..(Date.current - 1.month).end_of_month) }
 
   
 end

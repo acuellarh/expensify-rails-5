@@ -17,7 +17,12 @@ class DashboardController < ApplicationController
     end  
 
     @category_all_data = @category_data
-    #end total by category     
+    #end total by category  
+    
+    @today = Expense.total(Expense.today)
+    @yesterday = Expense.total(Expense.yesterday)
+    @this_month = Expense.total(Expense.month(Date.current))
+    @last_month = Expense.total(Expense.last_month)
     
   end
 
