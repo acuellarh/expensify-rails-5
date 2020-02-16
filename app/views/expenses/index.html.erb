@@ -33,9 +33,9 @@
        <div class="row" style="margin-top: 20px;">
          <div class="col-md-12">
            <%= link_to  "New Expense", new_expense_path, remote: true, class: "btn btn-success pull-left glyphicon glyphicon-plus" %>
-           <h4 class="dropdown pull-right">
+           <h4 class="pull-right">
            <!-- filter by date  -->
-             <select>
+             <select class="btn btn-success" >
                <% @month_list.each do |month| %>
                  <option value="<%= month%>"><%= month%></option>                          
                <%end%>
