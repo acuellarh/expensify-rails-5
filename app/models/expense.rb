@@ -30,8 +30,11 @@ class Expense < ApplicationRecord
   end
   
    # source -  https://github.com/ankane/groupdate
+   # List of months with expenses
   def self.extract_month_list(expenses = Expense.all)
-    expenses.group_by_month(:date, format: "%b %Y").count.keys
+    expenses = expenses.group_by_month(:date, format: "%b %Y").count
+    expenses = expenses.delete_if {|key, value| value == 0 } 
+    expenses = expenses.keys
   end 
 
   # scope :filter_month, -> (start = "Mon, 10 Feb 2020 11:09:20 UTC +00:00") {

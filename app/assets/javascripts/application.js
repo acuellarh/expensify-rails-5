@@ -32,5 +32,34 @@ $(document).ajaxError(function(event,xhr,options,exc) {
        
 });
 
+function FilterView() {
+    // filtration by date
+    $('select').on('change', function() {
+      console.log(this.value);
+      var month = $(this).val();
+    
+      $.ajax({
+          type: "GET",
+          url: "/expenses",
+          dataType: 'script',     
+          data: {month: month},  
+          success: function(response) {
+          //console.log(response)
+          console.log(month)
+          return false;    
+          }
+      });
+    
+    });
+
+
+  // filtration by checkbox
+    $('input[type=checkbox]').change(function(){      
+      $.get($('#expenses_search').attr('action'),        
+      $('#expenses_search').serialize(), null, 'script');      
+      return false;    
+    });
+
+}
  
 

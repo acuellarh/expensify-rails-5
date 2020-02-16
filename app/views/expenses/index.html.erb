@@ -31,6 +31,11 @@
 
    <%# calculos y enlaces %>
 
+            <select>
+              <% @month_list.each do |month| %>
+                <option value="<%= month%>"><%= month%></option>                          
+              <%end%>
+            </select>
 
 
 
@@ -45,7 +50,9 @@
   </div>
 </div>
 
-<script>
+
+
+<%# <script>
 $(function () {
   // filtration by checkbox
     $('input[type=checkbox]').change(function(){      
@@ -54,6 +61,10 @@ $(function () {
       return false;    
     });
 });
+</script> %>
+
+<script>
+ new FilterView(); 
 </script>
 
 
