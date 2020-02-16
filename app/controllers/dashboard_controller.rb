@@ -3,12 +3,11 @@ class DashboardController < ApplicationController
     @tab = :dashboard
 
     #total 
-    @column_data = Type.all.map do |type|
+    @all_expenses_data = Type.all.map do |type|
        {name: type.name, data: Expense.where(type_id: type.id).group_by_year(:date).sum(:amount)} 
     end
     
-    #total by category
-    #Type.all.map do |type|  { name: type.name, data: Expense.where(type_id: type.id).sum(:amount)}  end      
+    #total by category        
     @type_title = Type.all.map do |type| type.name end
     @category_sum = Type.all.map do |type| Expense.where(type_id: type.id).sum(:amount) end   
     
@@ -17,7 +16,8 @@ class DashboardController < ApplicationController
       @category_data[@type_title[index]] = @category_sum[index] 
     end  
 
-    @category_full_data = @category_data  
+    @category_all_data = @category_data
+    #end total by category     
     
   end
 
