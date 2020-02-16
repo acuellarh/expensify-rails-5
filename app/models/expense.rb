@@ -44,15 +44,7 @@ class Expense < ApplicationRecord
   scope :filter_month, -> (month) {
     month = ActiveSupport::TimeZone['UTC'].parse(month)
     where(date: month.beginning_of_month..month.end_of_month )  
-  }
-
-
-
-
-
-
-
-  
+  } 
 
   
 end
