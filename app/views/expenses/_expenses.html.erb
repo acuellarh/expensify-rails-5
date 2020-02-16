@@ -1,82 +1,45 @@
-    
-    
-    <div class="col-md-9 index-data">
-      <div class="row" style="margin-top: 10px;">
-        <div class="summary-box col-md-4 text-center">          
-          <div class="summary-value"><%= number_to_currency(@total) %></div>
-          <div class="summary-label">Total</div>
-        </diV>
-        <div class="summary-box col-md-4 text-center">
-          <div class="summary-value"><%= @num_transactions %></div>
-          <div class="summary-label">Transactions</div>
-        </div>
-        <div class="summary-box col-md-4 text-center">
-          <div class="summary-value"><%= number_to_currency(@average) %></div>
-          <div class="summary-label">Average</div>
-        </div>
-      </div>
+<table id="expenses-table" class="table table-hover" style="margin-top: 20px;">
+  <thead>
+  <tr>
+    <th class="text-center">Día</th>
+    <th>Concepto</th>
+    <th class="text-right">Categoría</th>
+    <th class="text-right">Valor</th>
+  </tr>
+  </thead> 
+  <tbody>
+    <%@expenses.each do |expense|%>
+      <tr>
+        <td class="date">
+          <div class="day"><%= expense.date.strftime(" %d ")%></div>
+          <div class="month"><%= expense.date.strftime(" %B ")%></div>               
+        </td>
+        <td>
+          <div>                 
+            <span class="type"><%= expense.type.name%></span>                  
+            <span class="type"><%= expense.type_id %></span>                  
+          </div>
+          <div>                 
+            <span class="concept"><%= expense.concept%></span>
+          </div>
+        </td>           
+        <td class="category text-right"><%= expense.category.name%></td>
+        <td class="text-right" style="width: 170px;">              
+          <div class="amount"><%= expense.amount%></div>
+          <div class="actions">
+            <%= link_to  "Edit", edit_expense_path(expense),remote:true, class: "glyphicon glyphicon-edit" %>
+            <%= link_to  "Delete", expense_path(expense),data: {confirm: "Esta seguro de eliminar el Gasto?"}, method: :delete , class: "glyphicon glyphicon-edit" %>
+        </td>
+      </tr>
+    <%end%> 
+  </tbody>
+</table>
+  
+  
+  
+  
+ 
 
-      <div class="row" style="margin-top: 20px;">
-        <div class="col-md-12">
-          <%= link_to  "New Expense", new_expense_path, remote: true, class: "btn btn-success pull-left glyphicon glyphicon-plus" %>
-          <h4 class="dropdown pull-right">
-            <%# <button type="button" class="dropdown-toggle btn btn-link" data-toggle="dropdown">April 2016 <span class="caret"></span></button>
-            <ul class="dropdown-menu" role="menu">
-              <li role="presentation"><a href="#">April 2016</a></li>
-              <li role="presentation"><a href="#">March 2016</a></li>
-              <!-- more months -->
-            </ul> %>
-
-            <%#= select "", "date", @month_list, { selected: @month_list.first }, class: "btn btn-success" %>
-           
-        <%# select_tag "city", options_for_select(@cities.collect{|p| [p.name, p.id]}, selected: params[:city]),
-        prompt: "Select city", class: "form-control"
-
-        select_tag "people", options_from_collection_for_select(@people, 'id', 'name', '1') %>
-
-
-
-          </h4>
-        </div>
-      </div>
-
-      <table id="expenses-table" class="table table-hover" style="margin-top: 20px;">
-        <thead>
-          <tr>
-            <th class="text-center">Día</th>
-            <th>Concepto</th>
-            <th class="text-right">Categoría</th>
-            <th class="text-right">Valor</th>
-          </tr>
-        </thead>
-        <tbody>
-          <%@expenses.each do |expense|%>
-            <tr>
-              <td class="date">
-                <div class="day"><%= expense.date.strftime(" %d ")%></div>
-                <div class="month"><%= expense.date.strftime(" %B ")%></div>               
-              </td>
-              <td>
-                <div>                 
-                  <span class="type"><%= expense.type.name%></span>                  
-                  <span class="type"><%= expense.type_id %></span>                  
-                </div>
-                <div>                 
-                  <span class="concept"><%= expense.concept%></span>
-                </div>
-              </td>           
-              <td class="category text-right"><%= expense.category.name%></td>
-              <td class="text-right" style="width: 170px;">              
-                <div class="amount"><%= expense.amount%></div>
-                <div class="actions">
-                  <%= link_to  "Edit", edit_expense_path(expense),remote:true, class: "glyphicon glyphicon-edit" %>
-                  <%= link_to  "Delete", expense_path(expense),data: {confirm: "Esta seguro de eliminar el Gasto?"}, method: :delete , class: "glyphicon glyphicon-edit" %>
-              </td>
-            </tr>
-           <%end%>  
-        </tbody>
-      </table>
-    </div>
 
 
 

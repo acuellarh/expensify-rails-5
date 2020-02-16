@@ -2,69 +2,58 @@
   <div class="row">
     <div class="col-md-3">      
       <br>
-      <!-- for_tag to filter expenses by type -->
+      <!-- for_tag to filter expenses by type and category -->
       <div class="list-group filter-type"> 
       <h4 class="filter-header">Transaction Type <span>Choose to filter</span></h4>    
       <%= form_tag expenses_path, method: 'get', id: "expenses_search" do %>
-
         <% @types = Type.all%>
         <% @types.each do |type| %>
           <span class="list-group-item">
             <%= check_box_tag "type_id[]", type.id %><%= type.name%><br>
           </span>  
-        <% end %>  
-
+        <% end %> 
         <h4 class="filter-header">Category Type  <span>Choose to filter</span></h4>
         <% @categories = Category.all %>
         <% @categories.each do |category| %>
           <span class="list-group-item">
             <%= check_box_tag "category_id[]", category.id %><%= category.name%><br>
            </span>  
-        <% end %>    
-      <br>        
-        <%#= submit_tag "submit", :name => nil, class: "btn btn-success pull-left"  %>
+        <% end %>   
       <% end %>     
       </div>
-      <!-- end for_tag to filter expenses by type  -->   
-
+      <!-- end for_tag to filter expenses by type and category  -->
     </div>
 
-   <%# calculos y enlaces %>
+    <div class="col-md-9 index-data">
 
-            <select>
-              <% @month_list.each do |month| %>
-                <option value="<%= month%>"><%= month%></option>                          
-              <%end%>
-            </select>
+       <div class="row" style="margin-top: 10px;">
+        <div id="expenses_cals" >  <%= render 'expenses_cals' %>   </div>
+       </div>
 
+       <div class="row" style="margin-top: 20px;">
+         <div class="col-md-12">
+           <%= link_to  "New Expense", new_expense_path, remote: true, class: "btn btn-success pull-left glyphicon glyphicon-plus" %>
+           <h4 class="dropdown pull-right">
+           <!-- filter by date  -->
+             <select>
+               <% @month_list.each do |month| %>
+                 <option value="<%= month%>"><%= month%></option>                          
+               <%end%>
+             </select>
+           <!-- filter by date  -->  
+           </h4>
+          </div>
+        </div>
 
-
-   <%# end calculos y enlaces  %>
-    
-
-    <div id="expenses" >  <%= render 'expenses' %>   </div>
-
- 
-
-
+        <div id="expenses" >  <%= render 'expenses' %>   </div>     
+     
+    </div>
   </div>
 </div>
 
-
-
-<%# <script>
-$(function () {
-  // filtration by checkbox
-    $('input[type=checkbox]').change(function(){      
-      $.get($('#expenses_search').attr('action'),        
-      $('#expenses_search').serialize(), null, 'script');      
-      return false;    
-    });
-});
-</script> %>
-
+<!-- Constructor function to call the js filters in application.js file  -->
 <script>
  new FilterView(); 
 </script>
-
+<!-- filter by date  -->
 
