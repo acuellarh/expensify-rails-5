@@ -30,10 +30,9 @@ class Expense < ApplicationRecord
   end
   
    # source -  https://github.com/ankane/groupdate
-   # List of months with expenses
+   # List of months with expenses - "series: false" works to exclude points without data
   def self.extract_month_list(expenses = Expense.all)
-    expenses = expenses.group_by_month(:date, format: "%b %Y").count
-    expenses = expenses.delete_if {|key, value| value == 0 } 
+    expenses = expenses.group_by_month(:date, format: "%b %Y", series: false).count    
     expenses = expenses.keys
   end 
 
@@ -47,5 +46,5 @@ class Expense < ApplicationRecord
   scope :month,      -> (month) { where(date: month.beginning_of_month..month.end_of_month) }
   scope :last_month, -> { where(date: (Date.current - 1.month).beginning_of_month..(Date.current - 1.month).end_of_month) }
 
-  
 end
+

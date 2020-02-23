@@ -4,7 +4,7 @@ class DashboardController < ApplicationController
 
     #total 
     @all_expenses_data = Type.all.map do |type|
-       {name: type.name, data: Expense.where(type_id: type.id).group_by_year(:date).sum(:amount)} 
+       {name: type.name, data: Expense.where(type_id: type.id).group_by_year(:date, format: "%Y").sum(:amount)} 
     end
     
     #total by category        
@@ -22,9 +22,16 @@ class DashboardController < ApplicationController
     @today = Expense.total(Expense.today)
     @yesterday = Expense.total(Expense.yesterday)
     @this_month = Expense.total(Expense.month(Date.current))
-    @last_month = Expense.total(Expense.last_month)
+    @last_month = Expense.total(Expense.last_month)   
+
+
+    @six_expense_data = Type.all.map do |type|
+      {name: type.name, data: Expense.all.where(type_id: type.id).group_by_month(:date, format: "%b %Y", last: 6).sum(:amount)} 
+    end
+
+    @this_month_by_day = Type.all.map do |type| 
+      {name: type.name, data: Expense.month(Date.current).where(type_id: type.id).group_by_day(:date).sum(:amount)} 
+    end
     
   end
-
-
 end
