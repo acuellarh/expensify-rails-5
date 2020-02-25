@@ -2,14 +2,16 @@ class DashboardController < ApplicationController
   def index
     @tab = :dashboard
 
+    
+
     #total 
     @all_expenses_data = Type.all.map do |type|
-       {name: type.name, data: Expense.where(type_id: type.id).group_by_year(:date, format: "%Y").sum(:amount)} 
+       {name: type.name, data: Expense.where(type_id: type.id).group_by_year(:date, format: "%Y").sum(:amount)}
     end
     
     #total by category        
-    @type_title = Type.all.map do |type| type.name end
-    @category_sum = Type.all.map do |type| Expense.where(type_id: type.id).sum(:amount) end   
+    @type_title = Type.all.map do |type| type.name end  
+    @category_sum = Type.all.map do |type| Expense.where(type_id: type.id).month(Date.current).sum(:amount) end   
     
     @category_data = Hash.new  
     @type_title.length.times do |index|
@@ -22,7 +24,7 @@ class DashboardController < ApplicationController
     @today = Expense.total(Expense.today)
     @yesterday = Expense.total(Expense.yesterday)
     @this_month = Expense.total(Expense.month(Date.current))
-    @last_month = Expense.total(Expense.last_month)   
+    @last_month = Expense.total(Expense.last_month)     
 
 
     @six_expense_data = Type.all.map do |type|

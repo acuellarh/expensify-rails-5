@@ -47,7 +47,7 @@
         <div class="panel-heading">Por Categoría</div>
         <div class="panel-body">
           <div id="category-chart" style="height: 300px;">            
-            <%= pie_chart @category_all_data, prefix: "$", thousands: ",", legend: "bottom"%>            
+            <%= pie_chart @category_all_data, prefix: "$", thousands: ",", legend: "bottom"%> 
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@
         <div class="panel-heading">Acumulado</div>
         <div class="panel-body">
           <div id="month-acc" style="height: 300px;">
-            <%= column_chart @all_expenses_data, stacked: true, prefix: "$", thousands: ",", legend: "bottom" %>
+            <%= column_chart @all_expenses_data, stacked: true, prefix: "$", thousands: ",", legend: "bottom" %>            
           </div>          
         </div>
       </div>
