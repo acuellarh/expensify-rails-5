@@ -26,10 +26,11 @@ class ExpensesController < ApplicationController
     @expense = Expense.new(params_expenses)
 
     respond_to do |format|
-      if @expense.save
+      if @expense.save        
         format.json { head :no_content }
         format.json {render json: @expense }
         format.js
+        #redirect_to expenses_path
       else
         format.json {render json: @expense.errors.full_messages,
                             status: :unprocessable_entity}
