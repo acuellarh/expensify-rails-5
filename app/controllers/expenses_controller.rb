@@ -14,6 +14,7 @@ class ExpensesController < ApplicationController
     @category_id =  params[:category_id].present? ? params[:category_id] : [1,2,3,4]
     @expenses = Expense.expense_type_id(@type_id).expense_category_id(@category_id).filter_month(@month_value)    
     @total = Expense.expense_type_id(@type_id).expense_category_id(@category_id).total(@expenses)
+    @expenses = @expenses.order(date: :asc)
     @num_transactions = @expenses.count 
     @average = @total / @num_transactions
   end
@@ -26,11 +27,12 @@ class ExpensesController < ApplicationController
     @expense = Expense.new(params_expenses)
 
     respond_to do |format|
-      if @expense.save        
+      if @expense.save  
+        flash[:notice] = "Gasto creado satisfactoriamente"
+        redirect_to expenses_path      
         format.json { head :no_content }
         format.json {render json: @expense }
-        format.js
-        #redirect_to expenses_path
+        format.js        
       else
         format.json {render json: @expense.errors.full_messages,
                             status: :unprocessable_entity}
@@ -46,7 +48,7 @@ class ExpensesController < ApplicationController
       flash[:notice] = "Gasto actualizado satisfactoriamente"
       redirect_to expenses_path(@expense)
     else
-      render :edit
+      render :edit          
     end    
   end
 
