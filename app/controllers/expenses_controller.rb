@@ -43,13 +43,18 @@ class ExpensesController < ApplicationController
   def edit    
   end 
   
-  def update    
-    if  @expense.update(params_expenses)
-      flash[:notice] = "Gasto actualizado satisfactoriamente"
-      redirect_to expenses_path(@expense)
-    else
-      render :edit          
-    end    
+  def update
+    respond_to do |format|
+      if  @expense.update(params_expenses)              
+        format.json { head :no_content }
+        format.js
+        redirect_to expenses_path(@expense)  
+        flash[:notice] = "Gasto actualizado satisfactoriamente"     
+      else        
+        format.json {render json: @expense.errors.full_messages,
+          status: :unprocessable_entity}          
+      end
+    end      
   end
 
 
