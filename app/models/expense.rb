@@ -1,5 +1,5 @@
 # == Schema Information
-#
+#Ptype
 # Table name: expenses
 #
 #  id          :integer          not null, primary key
@@ -23,6 +23,7 @@ class Expense < ApplicationRecord
   validates :date, presence: true
   validates :amount, presence: true
   validates :concept, presence: true
+  
   
   scope :expense_type_id, -> (type_id) {where(type_id: type_id)}
   scope :expense_category_id, -> (category_id) {where(category_id: category_id)}
