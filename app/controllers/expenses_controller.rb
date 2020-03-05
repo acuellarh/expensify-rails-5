@@ -32,7 +32,7 @@ class ExpensesController < ApplicationController
         flash[:notice] = "Gasto creado satisfactoriamente"
         format.json { head :no_content }
         format.json {render json: @expense }
-        format.js        
+        format.js  # Index.js.erb    
       else
         format.json {render json: @expense.errors.full_messages,
                             status: :unprocessable_entity}
