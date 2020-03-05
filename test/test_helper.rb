@@ -15,4 +15,20 @@ class ActiveSupport::TestCase
     include Devise::Test::IntegrationHelpers
   end
 
+  # Devise code to test sign_in
+  # Source: https://medium.com/@yutafujii_59175/a-simple-login-test-with-rails-devise-and-unit-test-68bc4fade4ba
+  include Devise::Test::IntegrationHelpers
+  include Warden::Test::Helpers
+
+  def log_in( user )
+    if integration_test?
+      #use warden helper
+      login_as(user, :scope => :user)
+    else #controller_test, model_test
+      #use devise helper
+      sign_in(user)
+    end  
+  end  
+  # End of Devise code to test sign_in
+
 end

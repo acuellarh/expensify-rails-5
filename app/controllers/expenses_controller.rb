@@ -27,9 +27,9 @@ class ExpensesController < ApplicationController
     @expense = Expense.new(params_expenses)
 
     respond_to do |format|
-      if @expense.save  
-        flash[:notice] = "Gasto creado satisfactoriamente"
+      if @expense.save      
         redirect_to expenses_path      
+        flash[:notice] = "Gasto creado satisfactoriamente"
         format.json { head :no_content }
         format.json {render json: @expense }
         format.js        

@@ -61,7 +61,5 @@ class ExpenseTest < ActiveSupport::TestCase
     expense = Expense.new(type: type, category: category, user: user, concept: concept, amount: amount)
     assert_not expense.save, "Saved the expense without date"
   end
-  
-  
-  
+
 end
