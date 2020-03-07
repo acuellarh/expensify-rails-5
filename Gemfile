@@ -49,6 +49,8 @@ gem 'has_scope'
 gem 'chartkick', '~> 3.3', '>= 3.3.1'
 # Gem to group the data in date format
 gem 'groupdate', '~> 4.3'
+# Gem CORS provides support for Cross-Origin Resource Sharing (CORS) for Rack compatible web applications
+gem 'rack-cors'
 
 
 group :development, :test do

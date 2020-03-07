@@ -1,5 +1,5 @@
 class ExpensesController < ApplicationController
-  before_action :current_expense, only: [:show, :edit, :update, :destroy]
+  before_action :current_expense, only: [:edit, :update, :destroy]
 
  
   has_scope :expense_type_id, type: :array

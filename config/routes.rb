@@ -5,12 +5,10 @@ Rails.application.routes.draw do
   resources :categories
   resources :expenses
   
-  
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :expenses, except: [:edit, :new, :show]
+    end
+  end
 
-  # root to:"home#index"
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
-  # Serve websocket cable requests in-process
-  # mount ActionCable.server => '/cable'
 end
