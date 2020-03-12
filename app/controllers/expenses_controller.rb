@@ -9,11 +9,12 @@ class ExpensesController < ApplicationController
     @tab = :expenses
     @month_list = Expense.extract_month_list.reverse!
     @first_month_date = @month_list.first
-    @month_value =  params[:month].present? ? Date.parse(params[:month]) : Date.parse(@first_month_date)    
+    # @month_value =  params[:month].present? ? Date.parse(params[:month]) : Date.parse(@first_month_date)    
     @type_id =  params[:type_id].present? ? params[:type_id] : [1,2,3,4]
     @category_id =  params[:category_id].present? ? params[:category_id] : [1,2,3,4]
     # @expenses = Expense.expense_type_id(@type_id).expense_category_id(@category_id).filter_month(@month_value)    
-    @expenses = Expense.expense_type_id(@type_id).expense_category_id(@category_id).month(@month_value)    
+    # @expenses = Expense.expense_type_id(@type_id).expense_category_id(@category_id).month(@month_value)    
+    @expenses = Expense.expense_type_id(@type_id).expense_category_id(@category_id)   
     @total = Expense.expense_type_id(@type_id).expense_category_id(@category_id).total(@expenses)
     @expenses = @expenses.order(date: :asc)
     @num_transactions = @expenses.count 
