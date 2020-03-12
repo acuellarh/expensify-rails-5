@@ -18,7 +18,13 @@ class ExpensesController < ApplicationController
     @total = Expense.expense_type_id(@type_id).expense_category_id(@category_id).total(@expenses)
     @expenses = @expenses.order(date: :asc)
     @num_transactions = @expenses.count 
-    @average = @total / @num_transactions
+    # if @num_transactions == 0
+    #   @average = 0
+    # else
+    #   @average = @total / @num_transactions
+    # end  
+
+    @average = @num_transactions == 0 ? 0 : @total / @num_transactions
   end
 
   def new
