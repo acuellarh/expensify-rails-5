@@ -17,7 +17,7 @@
 
 
 Expense.delete_all
-20.times do
+200.times do
   Expense.create(
     user_id: [1,34].sample,
     type_id: Faker::Number.between(1,4),  
