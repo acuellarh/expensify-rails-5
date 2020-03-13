@@ -6,8 +6,6 @@ class ExpensesController < ApplicationController
   has_scope :expense_category_id, type: :array  
 
   def index
-    # #@month_value =  params[:month].present? ? Date.parse(params[:month]) : Date.parse(@first_month_date)    
-    # #@expenses = Expense.expense_type_id(@type_id).expense_category_id(@category_id).month(@month_value)
     @tab = :expenses
     @month_list = Expense.extract_month_list.reverse!
     @first_month_date = @month_list.first
