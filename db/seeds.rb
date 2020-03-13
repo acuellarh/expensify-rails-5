@@ -6,20 +6,28 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# Type.delete_all
+Type.delete_all
 
-# Type.create ([
-#   {name: 'Purchase'},
-#   {name: 'Widthdraw'},
-#   {name: 'Transfer'},
-#   {name: 'Payment'},
-# ])
+Type.create ([
+  {name: 'Purchase'},
+  {name: 'Widthdraw'},
+  {name: 'Transfer'},
+  {name: 'Payment'},
+])
 
+Category.delete_all
+
+Type.create ([
+  {name: 'Leisure'},
+  {name: 'Nutrition'},
+  {name: 'Transport'},
+  {name: 'Rent'},
+])
 
 Expense.delete_all
 200.times do
   Expense.create(
-    user_id: [1,34].sample,
+    user_id: [1,2].sample,
     type_id: Faker::Number.between(1,4),  
     category_id: Faker::Number.between(1,4),           
     amount: Faker::Commerce.price(0..100000.0),           
