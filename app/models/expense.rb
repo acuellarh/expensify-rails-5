@@ -39,11 +39,10 @@ class Expense < ApplicationRecord
     expenses = expenses.keys
   end 
 
-  # scope :filter_month, -> (month) {
-  #   # month = ActiveSupport::TimeZone['UTC'].parse(month)
-  #   month = Date.parse(month)
-  #   where(date: month.beginning_of_month..month.end_of_month )  
-  # } 
+  scope :filter_month, -> (month) {
+    month = ActiveSupport::TimeZone['UTC'].parse(month)    
+    where(date: month.beginning_of_month..month.end_of_month )  
+  } 
 
   scope :today,      -> { where(date: Date.current) }
   scope :yesterday,  -> { where(date: Date.current - 1.day) }
