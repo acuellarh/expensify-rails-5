@@ -17,7 +17,7 @@ Type.create ([
 
 Category.delete_all
 
-Type.create ([
+Category.create ([
   {name: 'Leisure'},
   {name: 'Nutrition'},
   {name: 'Transport'},
