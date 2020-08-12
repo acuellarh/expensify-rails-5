@@ -46,7 +46,7 @@ gem 'faker'
 # Gem to filter with scopes
 gem 'has_scope'
 # Gem for charts
-gem 'chartkick', '~> 3.3', '>= 3.3.1'
+gem 'chartkick', '~> 3.4'
 # Gem to group the data in date format
 gem 'groupdate', '~> 4.3'
 # Gem CORS provides support for Cross-Origin Resource Sharing (CORS) for Rack compatible web applications
